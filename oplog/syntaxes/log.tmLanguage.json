@@ -1,0 +1,87 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "oplog",
+	"patterns": [
+		{
+			"include": "#keywords"
+		},
+		{ 	"name": "string.oplog",
+			"match": "dsp\\scom|#dsp\\scom",
+			"comment": "dspcommand" },
+
+		{
+			"name": "comment.line.double-slash.oplog",
+			"match": "^\\s*#.*$",
+			"comment": "onelinecomment"
+		},
+
+		{
+			"name": "markup.bold.oplog",
+			"match": "^[0-9a-fA-F]{8}",
+			"comment": "Configcommandhead"
+		},
+
+		{
+			"name": "constant.language",
+			"match": "[0-9a-fA-F]{8}",
+			"comment": "Configcommandbody"
+		},
+
+		{ 	"name": "string.oplog",
+			"match": "\\s*tx.0:.*$|\\s*tx.00:.*$",
+			"comment": "sendhead" },
+
+		{ 	"name": "constant.oplog",
+			"match": "\\s*tx.[1-9].*$|\\s*tx.0[1-9].*$",
+			"comment": "sendbody" },
+
+		{ 	"name": "markup.bold.oplog",
+			"match": "\\s*rx.0:.*$|\\s*rx.00:.*$",
+			"comment": "readhead" },
+
+		{ 	"name": "markup.bold.oplog",
+			"match": "\\s*rx.[1-9].*$|\\s*rx.0[1-9].*$",
+			"comment": "readbody" },
+
+		{ 	"name": "variable.oplog",
+			"match": "^.*\\sDSP\\s.*$",
+			"comment": "Mute" },
+
+		{ 	"name": "variable.oplog",
+			"match": "^.*Send.*$|^.*remap.*$|^.*Output_Channel_Mask",
+			"comment": "SendCom" },
+
+		{ 	"name": "markup.italic.oplog",
+			"match": "^.*read\\sACCN.*$",
+			"comment": "readACCN" },
+		{
+			"name": "comment.line.double-slash.plantuml",
+			"match": "^.[0-9a-fA-F]{3}/[0-9a-fA-F]{4}",
+			"comment": "Time"},
+		{ 	"name": "comment.line.double-slash.oplog",
+			"match": "DP_DSP_COM:ALOG:<DP_DSP_COM>|DF_DSP_SEQ:ALOG:<DF_DSP_SEQ>|DF_DSP_SEQ:ALOG:|ALOG:<DP_DSP_COM>|ALOG:<DF_DSP_SEQ>",
+			"comment": "Outoflog" }
+
+	],
+
+	"repository": {
+		"keywords": {
+			"patterns": [{
+				"name": "keyword.control.log",
+				"match": "\\b(if|while|for|return|DDP|DD|MAT|ATMOS|DTS:X|DTS|TRUE|Dolby|AAC|DSD|MPEG|PCM|CAR|OAR|DAP|ACCN|Neural:X|TrueHD|CrossBar|Remap)\\b"
+			}]
+		},
+		"strings": {
+			"name": "string.quoted.double.log",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.log",
+					"match": "\\\\."
+				}
+			]
+		}
+	},
+	"scopeName": "text.oplog"
+}
